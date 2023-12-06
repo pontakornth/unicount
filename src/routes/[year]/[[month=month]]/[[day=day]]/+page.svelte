@@ -2,10 +2,6 @@
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	export let targetDate: Date = $page.data.targetDate;
-	// const year = parseInt($page.params.year, 10);
-	// const month = parseInt($page.params.month, 10);
-	// const day = parseInt($page.params.day, 10);
-	// const targetDate = new Date(year, month - 1, day);
 	let currentDate = new Date();
 	$: timeDelta = targetDate.getTime() - currentDate.getTime();
 	$: remainingDays = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
