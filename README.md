@@ -1,3 +1,19 @@
+# UniCount: Universal countdown for every moment
+
+It is basically a URL-path based countdown. I created this because the previous countdown project is so limited.
+It is a WIP project by the way.
+
+## Features
+
+- [x] Basic URL countdown for midnight for the day
+- [ ] Special page for special countdown (e.g. New Year, Christmas, Songkran (Thai New Year))
+- [ ] Custom URL generator for even more customization
+
+## How to use the current version
+
+You can basically use `https://BASE_URL_FOR_THE_APP/{year}/{month}/{date}`. Month and date are optional. If
+they are not provided, it will default to 1. For example `https://BASE_URL_FOR_THE_APP/2025` is countdown for 2025 new year.
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
