@@ -1,35 +1,30 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	let year = $page.data.year;
-	let month = $page.data.month;
-	let day = $page.data.day;
-	let targetDate: Date = new Date(year, month, day);
+	export let targetDate: Date = $page.data.targetDate;
 	// const year = parseInt($page.params.year, 10);
 	// const month = parseInt($page.params.month, 10);
 	// const day = parseInt($page.params.day, 10);
 	// const targetDate = new Date(year, month - 1, day);
+	let currentDate = new Date();
+	$: timeDelta = targetDate.getTime() - currentDate.getTime();
+	$: remainingDays = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
+	$: remainingHours = Math.floor((timeDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	$: remainingMinutes = Math.floor((timeDelta % (1000 * 60 * 60)) / (1000 * 60));
+	$: remainingSeconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
+	$: isPassed = timeDelta <= 0;
 	let interval: number;
-	let remainingDays: number = 0;
-	let remainingHours: number = 0;
-	let remainingMinutes: number = 0;
-	let remainingSeconds: number = 0;
-	let isPassed = false;
 	let isError = false;
 
 	onMount(() => {
+		// I do not take milliseconds into account right now.
+		// I am not sure if making currentDate becomes reactive value will impact performance or not.
 		interval = setInterval(() => {
-			const currentDate = new Date();
-			const timeDelta = targetDate.getTime() - currentDate.getTime();
-			if (timeDelta <= 0) {
+			currentDate = new Date();
+			if (isPassed) {
 				clearInterval(interval);
-				isPassed = true;
 				return;
 			}
-			remainingDays = Math.floor(timeDelta / (1000 * 60 * 60 * 24));
-			remainingHours = Math.floor((timeDelta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			remainingMinutes = Math.floor((timeDelta % (1000 * 60 * 60)) / (1000 * 60));
-			remainingSeconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
 		}, 1000);
 	});
 </script>
