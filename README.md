@@ -7,6 +7,7 @@ It is a WIP project by the way.
 
 - [x] Basic URL countdown for midnight for the day
 - [ ] Special page for special countdown (e.g. New Year, Christmas, Songkran (Thai New Year))
+  - [x] New Year
 - [ ] Custom URL generator for even more customization
 
 ## How to use the current version
