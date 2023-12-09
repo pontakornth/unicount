@@ -10,6 +10,10 @@
 	$: remainingMinutes = Math.floor((timeDelta % (1000 * 60 * 60)) / (1000 * 60));
 	$: remainingSeconds = Math.floor((timeDelta % (1000 * 60)) / 1000);
 	$: isPassed = timeDelta <= 0;
+
+	// For some reason <svelte:head> is not reactive inside a component.
+	export let titleText = `${remainingDays}:${remainingHours}:${remainingMinutes}:${remainingSeconds}`;
+	$: titleText = `${remainingDays}:${remainingHours}:${remainingMinutes}:${remainingSeconds}`;
 	let interval: number;
 	let isError = false;
 
@@ -26,6 +30,17 @@
 	});
 </script>
 
+<!-- <svelte:head> -->
+<!-- 	{#if isPassed} -->
+<!-- 		<title> -->
+<!-- 			{passedText} -->
+<!-- 		</title> -->
+<!-- 	{:else} -->
+<!-- 		<title> -->
+<!-- 			{remainingDays}:{remainingHours}:{remainingMinutes}:{remainingSeconds}:{timeDelta} -->
+<!-- 		</title> -->
+<!-- 	{/if} -->
+<!-- </svelte:head> -->
 <main
 	class="flex p-4 text-center bg-orange-500 min-h-screen justify-center items-center flex-col text-white"
 >

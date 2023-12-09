@@ -1,9 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-// This should never run on the server.
-// I want to use local time and does not want to deal with timezone.
-export const ssr = false;
 export const load: PageLoad = ({ params }) => {
 	// If month and days were both unspecified, it is basically a new year countdown.
 	const year = parseInt(params.year, 10);
